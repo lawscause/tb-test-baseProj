@@ -1,0 +1,225 @@
+Associate.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookSort</title>
+
+
+<style>
+     html, body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin:0;   
+        } 
+
+     .header{
+        display:flex;
+        background-color: white;
+        color: black;
+        text-align: end;
+        height: 55px;  
+        align-items:center;
+        flex-direction: row;
+        padding-right: 15px;
+        justify-content: space-between;
+        font-size: 10px;    
+        }
+
+    .logo{
+        width: 100px;
+        height: auto;
+        }
+    .container {
+        display: inline-block;
+        cursor: pointer;
+        }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
+        }
+
+    /* Rotate first bar */
+    .change .bar1 {
+         -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+        transform: rotate(-45deg) translate(-9px, 6px) ;
+        }
+
+    /* Fade out the second bar */
+    .change .bar2 {
+        opacity: 0;
+        }       
+
+    /* Rotate last bar */
+    .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+    }
+        
+    .main{
+        display:flex;
+        flex-direction: column;
+        justify-content:flex-start;
+        padding:60px;
+        background-color: white;
+        height: 400px;     
+        }
+
+
+
+    .fixedbgd{
+        background-image: url("./images/jumbobooks.jpg"); /*image url for background*/
+        min-height: 500px; /*set the height for the background*/
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
+        * {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header2, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+</style>
+</head>
+
+
+<body>
+    <!-- sets all divs in header -->
+    <div class="header" id="myHeader"> 
+        <img src="images/logo.png" class="logo">
+        <div class="container" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+        </div>
+
+    </div> 
+
+    <!-- sets div for background image -->
+    <div class="fixedbgd"></div>
+
+    <!-- the div that controls the main portion of the page and its information at the bottom -->
+    <div class="main">
+        <h2>Book List</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for value.." title="Type in a names">
+
+<table id="myTable">
+  <tr class="header2">
+    <th style="width:40%;">Title</th>
+    <th style="width:30%;">Author</th>
+    <th style="width:10%;">Price</th>
+    <th style="width:20%;">ISBN</th>
+  </tr>
+  <tr>
+    <td>The Watson's Go To Birmingham</td>
+    <td>Germany</td>
+    <td>$6.00</td>
+    <td>9780593306499</td>
+  </tr>
+  <tr>
+    <td>Nancy Drew: The Hidden Staircase</td>
+    <td>Sweden</td>
+    <td>$3.00</td>
+    <td>0448095025</td>
+  </tr>
+  <tr>
+    <td>The Coldest Winter Ever</td>
+    <td>Sistah Souljah</td>
+    <td>$12.00</td>
+    <td>9780385323062</td>
+  </tr>
+  <tr>
+    <td>No Disrespect</td>
+    <td>Sistah Souljah</td>
+    <td>$11.00</td>
+    <td>9780679767084</td>
+  </tr>
+  <tr>
+    <td>Bud, Not Buddy</td>
+    <td>Christopher Paul Curtis</td>
+    <td>$5.00</td>
+    <td>9780385323062</td>
+  </tr>
+  
+</table>
+
+
+
+
+    </div>
+
+    <!-- javascript code -->
+<script>
+     //changes the menu bar to an X
+    function myFunction(x) {
+    x.classList.toggle("change");
+    }
+
+
+    function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+    
+
+
+
+</script>
+</body>
+</html>
